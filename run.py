@@ -40,4 +40,23 @@ class user:
 
 def main():
     '''
+    These is the main function of the application
+
     '''
+    login("")
+    choose("")
+
+def login(a):
+    '''
+    These is the login function that verifies each and every user
+
+    '''
+    if a! ="":
+        print(a)
+    username = input("username>>> ")
+    password = input("password>>> ")
+    with open("locker.py","r") as f:
+        data = f.read()
+        data = locker.loads(data)
+    user_data = user(data)
+    
