@@ -80,8 +80,21 @@ def choose(a):
 
     '''
 
-    if a != "":
+    if a!= "":
         print(a)
+    x = int(input("What do you want to do:\n\t1. Add an existing account. \n\t2. Create a new account.\n\t3. Delete an account.\n\42.View your accounts.\n>>> "))
+    print(x)
+    if x == 1:
+        add()
+    elif x == 2:
+        create()
+    elif x == 3:
+        delete()
+    elif x == 4:
+        view()
+        choose("")
+    else:
+        choose("Invalid")
 
 
 
