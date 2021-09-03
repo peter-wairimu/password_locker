@@ -2,7 +2,6 @@
 
 import random
 import json
-from sys import pycache_prefix
 from locker import Password
 
 print("welcome to password manager,\n\tplease login..")
@@ -95,6 +94,15 @@ def choose(a):
         choose("")
     else:
         choose("Invalid")
+
+def add():
+    account = input("Enter the name of the account.(ie Facebook,twitter,email)\n>>")
+    username =input("Enter your username.\n>>")
+    password = input("Enter your password.\n>>")
+    details = credentials(account,username,password)
+    details.save()
+    choose("")
+
 
 
 
