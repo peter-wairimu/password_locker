@@ -23,3 +23,10 @@ class credentials:
         f.write(self.username + "\n")
         f.write(self.password + "\n")
         f.close()
+
+class user:
+    '''
+    These class holds information about the user
+
+    '''
+    
