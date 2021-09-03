@@ -29,4 +29,15 @@ class user:
     These class holds information about the user
 
     '''
-    
+    def __init__(self,data):
+        self.data = data 
+
+    def user(self):
+        return self.data["user"]
+
+    def password(self):
+        return self.data["password"]
+
+def main():
+    '''
+    '''
