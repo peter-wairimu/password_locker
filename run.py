@@ -1,5 +1,8 @@
 #!/usr/bin/env python3.6
+
 import random
+import json
+from sys import pycache_prefix
 from locker import Password
 
 print("welcome to password manager,\n\tplease login..")
@@ -51,13 +54,13 @@ def login(a):
     These is the login function that verifies each and every user
 
     '''
-    if a! = "":
+    if a!= "":
         print(a)
     username = input("username>>> ")
     password = input("password>>> ")
-    with open("locker.py","r") as f:
+    with open("locker.json","r") as f:
         data = f.read()
-        data = py.loads(data)
+        data = json.loads(data)
     user_data = user(data)
     if username == user_data.user():
         if password == user_data.password():
