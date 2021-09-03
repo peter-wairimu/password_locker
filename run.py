@@ -51,12 +51,36 @@ def login(a):
     These is the login function that verifies each and every user
 
     '''
-    if a! ="":
+    if a! = "":
         print(a)
     username = input("username>>> ")
     password = input("password>>> ")
     with open("locker.py","r") as f:
         data = f.read()
-        data = locker.loads(data)
+        data = py.loads(data)
     user_data = user(data)
+    if username == user_data.user():
+        if password == user_data.password():
+            print("Login successful.\n\tWelcome..")
+        else:
+            print("Incorrect password")
+            login("please try again")
+
+    else:
+        print("Incorrect username")
+        login("Please try again..")
+
+
+def choose(a):
+    '''
+    These function allows the user choose from available option
+
+    '''
+
+    if a != "":
+        print(a)
+
+
+
+
     
