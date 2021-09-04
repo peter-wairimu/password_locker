@@ -129,6 +129,11 @@ def create():
         print("Invalid")
         create()
 
+    account_data = credentials(account,username,pas)
+    account_data.save()
+    choose("")
+    
+
     
             
 
