@@ -2,7 +2,7 @@
 
 import random
 import json
-from locker import Password
+
 
 print("welcome to password manager,\n\tplease login..")
 
@@ -118,7 +118,7 @@ def create():
     password = input("Do you want to create a password?(yes, no)  ")
     if password == "yes" or password == "no":
         if password =="yes":
-            length = int(input("How long do you want your password"))
+            length = int(input("How long do you want your password  "))
             pas = gen(length)
             print("Your password is:",pas)
 
