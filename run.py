@@ -132,7 +132,25 @@ def create():
     account_data = credentials(account,username,pas)
     account_data.save()
     choose("")
-    
+
+def make_arr():
+    f = open("account.txt", "r")
+    arr = []
+    small = []
+    x = f.readlines()
+    i = 0
+    while i <len(x):
+        small.append(x[i])
+        small.append(x[i+1])
+        small.append(x[i+2])
+        arr.append(small)
+        small = []
+        i += 3
+        f.close()
+        return arr
+        
+
+
 
     
             
