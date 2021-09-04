@@ -9,7 +9,7 @@ print("welcome to password manager,\n\tplease login..")
 
 class credentials:
     '''
-    These class accepts account_name,username, password.
+    These class accepts account name,username, password.
     It stores them as a dictionary.
 
     '''
@@ -39,6 +39,15 @@ class user:
 
     def password(self):
         return self.data["password"]
+
+
+def gen(x):
+    chars = "wairimu254"
+    pas = ""
+    for i in range(x):
+        pas += chars[random.randint(0,36)]
+    return pas
+
 
 def main():
     '''
@@ -96,12 +105,35 @@ def choose(a):
         choose("Invalid")
 
 def add():
-    account = input("Enter the name of the account.(ie Facebook,twitter,email)\n>>")
+    account = input("Enter the name of the account.(ie, Facebook,twitter,email)\n>>")
     username =input("Enter your username.\n>>")
     password = input("Enter your password.\n>>")
     details = credentials(account,username,password)
     details.save()
     choose("")
+
+def create():
+    account = input("Enter the name of the account(ie,facebook,twitter,email.\n>>>)")
+    username =input("Enter your username.\n>>>")
+    password = input("Do you want to create a password?(Yes, No)")
+    if password == "Yes" or password == "No":
+        if password =="Yes":
+            length = int(input("How long do you want your password"))
+            pas = gen(length)
+            print("Your password is:",pas)
+
+        else:
+            pas = input("Enter password.\n>>>")
+
+    else:
+        print("Invalid")
+        create()
+
+    
+            
+
+
+
 
 
 
