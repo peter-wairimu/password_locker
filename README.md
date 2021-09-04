@@ -25,7 +25,7 @@ Incase of any queries or any clarification you can contact us via email or phone
 
 # MIT License
 
-### Copyright (c) 2021 PETITE PIZZA INN
+### Copyright (c) 2021 
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
