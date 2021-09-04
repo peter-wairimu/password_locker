@@ -19,7 +19,7 @@ Its an application where a user can creat passwords for his or her accounts and 
 # Support and contact details
 Incase of any queries or any clarification you can contact us via email or phone.
 
-#### email. petite.105@gmail.com
+#### email. chegewairimu66@gmail.com
 #### phone. 0707569387
 
 
