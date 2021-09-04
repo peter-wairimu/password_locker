@@ -42,7 +42,7 @@ class user:
 
 
 def gen(x):
-    chars = "wairimu254"
+    chars = "qwrftyuipokjnh768905432werfdxcvbhuijk"
     pas = ""
     for i in range(x):
         pas += chars[random.randint(0,36)]
@@ -134,7 +134,7 @@ def create():
     choose("")
 
 def make_arr():
-    f = open("account.txt", "r")
+    f = open("account.text", "r")
     arr = []
     small = []
     x = f.readlines()
@@ -164,7 +164,7 @@ def delete():
     arr = make_arr()
     if no <= len(arr):
         print(arr[0])
-        f = open("account.txt", "w")
+        f = open("account.text", "w")
         arr.remove("")
         for a in arr:
             for i in a:
