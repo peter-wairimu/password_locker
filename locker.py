@@ -12,9 +12,5 @@ class Password:
 
 
 
-    # def user(self):
-    #     return self.data["user"]
-
-    # def password(self):
-    #     return self.data["password"]
+   
     
