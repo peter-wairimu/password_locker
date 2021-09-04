@@ -115,9 +115,9 @@ def add():
 def create():
     account = input("Enter the name of the account(ie,facebook,twitter,email.\n>>>)")
     username =input("Enter your username.\n>>>")
-    password = input("Do you want to create a password?(Yes, No)")
-    if password == "Yes" or password == "No":
-        if password =="Yes":
+    password = input("Do you want to create a password?(yes, no)  ")
+    if password == "yes" or password == "no":
+        if password =="yes":
             length = int(input("How long do you want your password"))
             pas = gen(length)
             print("Your password is:",pas)
@@ -148,7 +148,34 @@ def make_arr():
         i += 3
         f.close()
         return arr
-        
+
+def view():
+    arr = make_arr()
+    j = 0
+    for a in arr:
+        print(j+1,":")
+        print("\tAccount:", a[0],"\tUsername:",a[1],"\tPassword:",a[2])
+        j+= 1
+
+def delete():
+    print("Enter number of the record you want to delete")
+    view()
+    no = int(input(">>>"))
+    arr = make_arr()
+    if no <= len(arr):
+        print(arr[0])
+        f = open("account.txt", "w")
+        arr.remove("")
+        for a in arr:
+            for i in a:
+                f.write(i)
+        f.close()
+
+if __name__ == '__main__':
+    main()
+
+
+
 
 
 
