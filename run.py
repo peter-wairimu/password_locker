@@ -6,39 +6,73 @@ import json
 
 print("welcome to password manager,\n\tplease login..")
 
-
-class credentials:
+class Credentials:
     '''
-    These class accepts account name,username, password.
-    It stores them as a dictionary.
+    These class accepts account name,username,password.
+    It stores them as a dictionary
 
     '''
-    def __init__(self,account,username,password):
-
+    def __init__(self,account,username,password,usr):
         self.account = account
         self.username = username
         self.password = password
-    
+        self.usr = usr
+
+
     def save(self):
-        f=open("account.text","a")
-        f.write(self.account+ "\n")
-        f.write(self.username + "\n")
-        f.write(self.password + "\n")
+        f=open(self.usr+".text","a")
+        f.write(self.account+"\n")
+        f.write(self.username+"\n")
+        f.write(self.password+"\n")
         f.close()
 
-class user:
+class User:
     '''
     These class holds information about the user
 
     '''
-    def __init__(self,data):
-        self.data = data 
 
-    def user(self):
-        return self.data["user"]
+    def __init__(self,data,usr):
+        self.data = data
+        self.usr = usr
 
     def password(self):
-        return self.data["password"]
+        return self.data[self.usr]
+
+def create_acc():
+    usr = input("Username>>> ")
+    pas = input("password")
+    data = {}
+    file = open("locker.json","r")
+    data = json.load(file)
+    file.close()
+    file = open("locker.json","w")
+    data[usr]= pas
+    json.dump(data,file)
+    file.close()
+    global usrname
+    usrname = usr
+    #return usr
+
+def login(a):
+    '''
+    These is the function that verifies each and every user
+
+    '''
+    if a!="":
+        print(a)
+        username = input("username>>> ")
+        password = input("password>>> ")
+        global usrname
+        usrname = username
+        with open("locker.json","r") as f:
+            data = json.load(f)
+            user_data =User(data,username)
+            if password == user_data.password():
+                print("Login successful.\n\tWelcome..")
+            else:
+                print("Incorrect password")
+                login("please try again")
 
 
 def gen(x):
@@ -52,67 +86,51 @@ def gen(x):
 def main():
     '''
     These is the main function of the application
-
     '''
-    login("")
-    choose("")
-
-def login(a):
-    '''
-    These is the login function that verifies each and every user
-
-    '''
-    if a!= "":
-        print(a)
-    username = input("username>>> ")
-    password = input("password>>> ")
-    with open("locker.json","r") as f:
-        data = f.read()
-        data = json.loads(data)
-    user_data = user(data)
-    if username == user_data.user():
-        if password == user_data.password():
-            print("Login successful.\n\tWelcome..")
-        else:
-            print("Incorrect password")
-            login("please try again")
-
-    else:
-        print("Incorrect username")
-        login("Please try again..")
+    choice = input("Select:\n1: create\n2: login")
+    if choice == "1":
+        create_acc()
+        choose("",usrname)
+    elif choice == "2":
+        login("")
+        choose("",usrname)
 
 
-def choose(a):
+
+
+def choose(a,usr):
     '''
     These function allows the user choose from available option
-
     '''
 
     if a!= "":
         print(a)
-    x = int(input("What do you want to do:\n\t1. Add an existing account. \n\t2. Create a new account.\n\t3. Delete an account.\n\42.View your accounts.\n>>> "))
+    x = int(input("What do you want to do:\n\t1. Add an existing account. \n\t2. Create a new account.\n\t3. Delete an account.\n\t4.View your accounts.\n>>> "))
     print(x)
     if x == 1:
-        add()
+        add(usrname)
     elif x == 2:
-        create()
+        create(usrname)
     elif x == 3:
-        delete()
+        delete(usrname)
     elif x == 4:
-        view()
-        choose("")
+        view(usr)
+        choose("",usrname)
     else:
-        choose("Invalid")
+        choose("Invalid",usrname)
 
-def add():
+
+def add(usr):
     account = input("Enter the name of the account.(ie, Facebook,twitter,email)\n>>")
     username =input("Enter your username.\n>>")
     password = input("Enter your password.\n>>")
-    details = credentials(account,username,password)
+    details = Credentials(account,username,password,usr)
     details.save()
-    choose("")
+    choose("",usrname)
 
-def create():
+
+
+def create(usr):
     account = input("Enter the name of the account(ie,facebook,twitter,email.\n>>>)")
     username =input("Enter your username.\n>>>")
     password = input("Do you want to create a password?(yes, no)  ")
@@ -121,7 +139,6 @@ def create():
             length = int(input("How long do you want your password  "))
             pas = gen(length)
             print("Your password is:",pas)
-
         else:
             pas = input("Enter password.\n>>>")
 
@@ -129,12 +146,14 @@ def create():
         print("Invalid")
         create()
 
-    account_data = credentials(account,username,pas)
+    
+    account_data = Credentials(account,username,pas,usr)
     account_data.save()
-    choose("")
+    choose("",usrname)
 
-def make_arr():
-    f = open("account.text", "r")
+
+def make_arr(usr):
+    f = open(usr+".text", "r")
     arr = []
     small = []
     x = f.readlines()
@@ -146,33 +165,44 @@ def make_arr():
         arr.append(small)
         small = []
         i += 3
+        print(i)
         f.close()
         return arr
 
-def view():
-    arr = make_arr()
+
+def view(usr):
+	
+    arr = make_arr(usr)
     j = 0
+    if len(arr) == 0:
+        print("No entries")
+        return
     for a in arr:
         print(j+1,":")
         print("\tAccount:", a[0],"\tUsername:",a[1],"\tPassword:",a[2])
         j+= 1
 
-def delete():
+
+def delete(usr):
     print("Enter number of the record you want to delete")
-    view()
+    view(usrname)
     no = int(input(">>>"))
-    arr = make_arr()
+    arr = make_arr(usrname)
     if no <= len(arr):
-        print(arr[0])
-        f = open("account.text", "w")
+        f = open(usr+".txt","w")
+        arr[no-1] = ""
         arr.remove("")
+        print(arr)
         for a in arr:
             for i in a:
                 f.write(i)
         f.close()
+    choose("",usrname)
+
 
 if __name__ == '__main__':
     main()
+
 
 
 
